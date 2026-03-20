@@ -851,33 +851,31 @@ class TP_HTML_Publication_Template {
         return $end;
     }
 
-    /**
-     * Prepares an Altmetric badge block for a publication entry.
-     *
-     * Generates the HTML embed element for an Altmetric badge. The badge type
-     * can be customised via the $altm_type parameter. If no type is provided,
-     * 'donut' is used as the default to preserve backward compatibility.
-     *
-     * For available badge types see:
-     * https://badge-docs.altmetric.com/customizations.html#badge-types
-     *
-     * @param string $doi       The DOI of the publication. Defaults to empty string.
-     * @param string $altm_type The Altmetric badge type to render.
-     *                          Accepted values: 'donut', 'medium-donut', 'large-donut',
-     *                          'bar', 'medium-bar', 'large-bar', '1', '4'.
-     *                          Defaults to 'donut'.
-     * @return string           The HTML string for the Altmetric embed, or empty string if no DOI.
-     * @since 3.0.0
-     * @access public
-     */
-    public static function prepare_altmetric( $doi = '', $altm_type = 'donut' ) {
-        if ( $doi === '' ) {
-            return '';
-        }
-
-        return '<div data-badge-popover="right" data-badge-type="' . esc_attr( $altm_type ) . '" data-doi="' . esc_attr( $doi ) . '" data-condensed="true" class="altmetric-embed"></div>';
+/**
+ * Prepares an Altmetric badge block for a publication entry.
+ *
+ * Generates the HTML embed element for an Altmetric badge. The badge type
+ * can be customised via the $altm_type parameter. If no type is provided,
+ * 'large-donut' is used as the default to preserve backward compatibility.
+ *
+ * For available badge types see:
+ * https://badge-docs.altmetric.com/customizations.html#badge-types
+ *
+ * @param string $doi       The DOI of the publication. Defaults to empty string.
+ * @param string $altm_type The Altmetric badge type to render.
+ *                          Accepted values: 'donut', 'medium-donut', 'large-donut',
+ *                          'bar', 'medium-bar', 'large-bar', '1', '4'.
+ *                          Defaults to 'large-donut'.
+ * @return string           The HTML string for the Altmetric embed, or empty string if no DOI.
+ * @since 3.0.0
+ * @access public
+ */
+public static function prepare_altmetric( $doi = '', $altm_type = 'large-donut' ) {
+    if ( $doi === '' ) {
+        return '';
     }
-
+    return '<div data-badge-details="right" data-badge-type="' . esc_attr( $altm_type ) . '" data-doi="' . esc_attr( $doi ) . '" data-condensed="true" class="altmetric-embed"></div>';
+}
 
 
 
